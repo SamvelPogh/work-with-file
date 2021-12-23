@@ -1,0 +1,46 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <infstr.h>
+#include <vector>
+using namespace std;
+
+
+
+
+string get_from_file() {
+	string line = "";
+
+	string filetext = "";
+	ifstream file1("C:\\Users\\User\\Desktop\\aa.txt");
+
+
+	while (!file1.eof())
+	{
+		
+		getline(file1,line);
+		
+		filetext = filetext + line+' ';
+	}
+	cout << "reading from file successfully"<<endl;
+	cout << filetext<<endl;
+	return filetext;
+}
+
+vector<int> recordingtext() {
+	string text = get_from_file();
+	vector<int> file;
+	string tmp_st = "";
+	int tmp_int;
+	for (int i = 0; i < text.length(); ++i) {
+		if (text[i] != ' ') {
+			tmp_st += text[i];
+		}
+		else {
+			tmp_int = stoi(tmp_st);
+			file.push_back(tmp_int);
+			tmp_st = "";
+		}
+	}
+	return file;
+}
